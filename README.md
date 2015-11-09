@@ -17,5 +17,6 @@ Adding complied OpenCV apps in bin project directory. In this project used **_op
 Mentioned files can be download from [here](https://github.com/hzawary/CascadeTrainingTool/releases).
 
 ### Short keys
-**_Ctrl+Right_** and **_Ctrl+Left** for goto next image and previous image respectively.
-**_Ctrl+Up_** and **_Ctrl+Down** for accept image as positive and negative respectively and goto the next image.
+**_Ctrl+Right_** and **_Ctrl+Left_** for goto next image and previous image respectively.
+
+**_Ctrl+Up_** and **_Ctrl+Down_** for accept image as positive and negative respectively and goto the next image.
