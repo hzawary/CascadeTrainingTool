@@ -15,3 +15,7 @@ By References:
 Adding complied OpenCV apps in bin project directory. In this project used **_opencv_annotation.exe_**, **_opencv_createsamples.exe_**, **_opencv_ffmpeg300.dll_**, **_opencv_traincascade.exe_**, **_opencv_world300.dll_**, **_opencv_world300d.dll_** files about 18 MB (OpenCV v3.0).
 
 Mentioned files can be download from [here](https://github.com/hzawary/CascadeTrainingTool/releases).
+
+### Short keys
+**_Ctrl+Right_** and **_Ctrl+Left** for goto next image and previous image respectively.
+**_Ctrl+Up_** and **_Ctrl+Down** for accept image as positive and negative respectively and goto the next image.
