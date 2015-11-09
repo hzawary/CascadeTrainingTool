@@ -1,0 +1,169 @@
+﻿<Window x:Class="WpfApp_PositiveBuilder_Demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WpfApp_PositiveBuilder_Demo"
+        WindowState="Maximized" Title="Cascade Training Builder Tools"
+        Loaded="MainWindow_OnLoaded" WindowStartupLocation="CenterScreen"
+        Height="550" Width="880" MinHeight="550" MinWidth="880" ResizeMode="CanResizeWithGrip">
+    <Window.InputBindings>
+        <KeyBinding Command="ApplicationCommands.NotACommand" Modifiers="Alt" Key="F4"/>
+        <KeyBinding Command="ApplicationCommands.Help" Key="F1"/>
+        <KeyBinding Command="ApplicationCommands.Close" Key="F2"/>
+        <KeyBinding Command="ApplicationCommands.Open" Key="F3"/>
+        <KeyBinding Command="ApplicationCommands.Find" Key="F4"/>
+        <KeyBinding Command="NavigationCommands.Refresh" Key="F5"/>
+        <KeyBinding Command="ApplicationCommands.Properties" Key="F10"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Help" Executed="HelpCommandBinding_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Close" Executed="CloseCommandBinding_Executed"/>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="OpenCommandBinding_Executed"/>
+        <CommandBinding Command="NavigationCommands.Refresh" Executed="RefreshPicsCommandBinding_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Menu Grid.ColumnSpan="2">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Open Image Folder" Command="ApplicationCommands.Open" InputGestureText="F3"/>
+                <MenuItem Header="_Next Image" InputGestureText="Ctrl+Rigth" Click="NextImage_OnClick"/>
+                <MenuItem Header="_Prev Image" InputGestureText="Ctrl+Left" Click="PrevImage_OnClick"/>
+                <Separator/>
+                <MenuItem Header="E_xit" Command="ApplicationCommands.Close" InputGestureText="F2"/>
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem Header="Reload images from resources folder" Command="NavigationCommands.Refresh" InputGestureText="F5"/>
+                <MenuItem Header="Open resources folder" Click="openResources_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="Tutorial" Command="ApplicationCommands.Help"/>
+                <Separator/>
+                <MenuItem Header="About" Click="AboutMenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <Viewbox Grid.Row="1" Grid.Column="0" Margin="5">
+            <local:RegionDeterminer x:Name="RegionDeterminerUserControl"
+                                    SelectedRegionCompleted="RegionDeterminerUserControl_OnSelectedRegionCompleted"
+                                    ResetSelectionOccured="RegionDeterminerUserControl_OnResetSelectionOccurred"/>
+        </Viewbox>
+
+        <GridSplitter Grid.Row="1" Grid.Column="0" Width="5"/>
+
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer Background="Black"
+                          HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                <Grid>
+                    <TextBlock Text="Preview Cropped Image" Foreground="#5B5B5B" FontSize="22" FontFamily="Century Gothic"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Image x:Name="CroppedImage" Stretch="None"/>
+                </Grid>
+            </ScrollViewer>
+
+            <ScrollViewer Grid.Row="1"
+                          HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style x:Key="BaseStyle" TargetType="FrameworkElement">
+                            <Setter Property="Margin" Value="3 5 3 3"/>
+                        </Style>
+                        <Style TargetType="CheckBox" BasedOn="{StaticResource BaseStyle}">
+                            <Setter Property="IsChecked" Value="True"/>
+                        </Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource BaseStyle}">
+                        </Style>
+                        <Style x:Key="HorizeStackStyle" TargetType="StackPanel" BasedOn="{StaticResource BaseStyle}">
+                            <Setter Property="Orientation" Value="Horizontal"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <CheckBox x:Name="IsResized" Content="Is Resized Image"/>
+                    <CheckBox x:Name="IsLuminance" Content="Is Image in Luminance"/>
+                    <CheckBox x:Name="IsRemovedNoises" Content="Is Removed Image Noises"/>
+                    <CheckBox x:Name="IsAutoExtractionBg" Content="Is Auto Extraction Negatives"
+                              Click="IsAutoExtractionBg_OnClick"/>
+                    <CheckBox x:Name="IsTopDirectorySearch" Content="Is Top Directory Only to search Images"/>
+
+                    <Button Content="Save as Positive and go to next image" Click="SaveSample_OnClick"/>
+                    <Button Content="Save as Negative and go to next image" Click="SaveBg_OnClick"/>
+
+                    <UniformGrid Rows="1">
+                        <Button Content="Save all as +" Click="SaveAllSamples_OnClick"/>
+                        <Button Content="Save all as -" Click="SaveAllBg_OnClick"/>
+                    </UniformGrid>
+
+                    <Separator Height="30"/>
+
+                    <StackPanel Style="{StaticResource HorizeStackStyle}">
+                        <TextBlock Text="Number of samples(%): "/>
+                        <TextBox x:Name="PercentSamples" Text="100" MaxLength="3"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource HorizeStackStyle}">
+                        <TextBlock Text="Sample width: "/>
+                        <TextBox x:Name="SampleWidth" Text="60" MaxLength="3"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource HorizeStackStyle}">
+                        <TextBlock Text="Sample height: "/>
+                        <TextBox x:Name="SampleHeight" Text="20" MaxLength="3"/>
+                    </StackPanel>
+                    <UniformGrid Rows="1">
+                        <Button Content="Create Vector File" Click="CreateVec_OnClick"/>
+                        <Button Content="Show Inside Vector File" Click="ShowVec_OnClick"/>
+                    </UniformGrid>
+
+                    <Separator Height="30"/>
+
+                    <StackPanel Style="{StaticResource HorizeStackStyle}">
+                        <TextBlock Text="Cascade Folder Name: "/>
+                        <TextBox x:Name="CascadeDirName" Text="Cascade_60x20"/>
+                    </StackPanel>
+                    <StackPanel Style="{StaticResource HorizeStackStyle}">
+                        <TextBlock Text="Number of Stages: "/>
+                        <TextBox x:Name="NumofStagesTextBox" Text="20"/>
+                    </StackPanel>
+                    <Button Content="Generate Train XML" Click="GenerateTrain_OnClick"/>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0">
+            <StatusBar.Background>
+                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0,0">
+                    <GradientStop Color="#FF4DB3FB" Offset="0.008"/>
+                    <GradientStop Color="#FF238BD4" Offset="1"/>
+                </LinearGradientBrush>
+            </StatusBar.Background>
+            <StatusBar.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+            </StatusBar.Resources>
+            <Image x:Name="ThumbnailImage"/>
+            <TextBlock>
+                <Run Text="(" FontSize="18"/>
+                <TextBox x:Name="NewWidthTextBox" Text="720" MaxLength="4" Background="Transparent" Foreground="White"/>
+                <Run Text="x" FontSize="18"/>
+                <TextBlock x:Name="SizeStatusTextBlock" FontSize="18"/>
+                <Run Text=")" FontSize="18"/>
+            </TextBlock>
+            <Separator Width="2"/>
+            <TextBlock x:Name="CurrentStatusTextBlock" Text="Positives or Negatives not constructed yet." FontWeight="Medium"/>
+            <Separator Width="2"/>
+            <TextBlock x:Name="ImageInfoTextBlock" TextWrapping="Wrap"/>
+        </StatusBar>
+    </Grid>
+</Window>
