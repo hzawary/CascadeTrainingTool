@@ -12,20 +12,15 @@ By References:
 - http://www.prodigyproductionsllc.com/articles/programming/how-to-train-opencv-haar-classifiers/
 
 ## **Requiring before runnig the program**
-Adding complied OpenCV apps in bin project directory. In this project used **_opencv_annotation.exe_**, **_opencv_createsamples.exe_**, **_opencv_ffmpeg300.dll_**, **_opencv_traincascade.exe_**, **_opencv_world300.dll_**, **_opencv_world300d.dll_** files about 18 MB (OpenCV v3.0).
-
-Mentioned files can be download from [here](https://github.com/hzawary/CascadeTrainingTool/releases).
+- Adding complied OpenCV apps in bin project directory. In this project used **_opencv_annotation.exe_**, **_opencv_createsamples.exe_**, **_opencv_ffmpeg300.dll_**, **_opencv_traincascade.exe_**, **_opencv_world300.dll_**, **_opencv_world300d.dll_** files about 18 MB (OpenCV v3.0).
+- Mentioned files can be download from [here](https://github.com/hzawary/CascadeTrainingTool/releases).
 
 ### Short keys
-**_Ctrl+Right_** and **_Ctrl+Left_** for goto next image and previous image respectively.
-
-**_Ctrl+Up_** and **_Ctrl+Down_** for accept image as positive and negative respectively and goto the next image.
+- **_Ctrl+Right_** and **_Ctrl+Left_** for goto next image and previous image respectively.
+- **_Ctrl+Up_** and **_Ctrl+Down_** for accept image as positive and negative respectively and goto the next image.
 
 ### The result program structure
-**_Negatives_**: Directory include a text file and negative images.
-
-**_Positives_**: Directory include a text file and positive images.
-
-**_samples.vec_**: Vector file from positive images.
-
-**_Cascade_** _ **_??x??_**: Directory (an arbitrary name) include trained xml files from vector file and negative images.
+- **_Negatives_**: Directory include a text file and negative images.
+- **_Positives_**: Directory include a text file and positive images.
+- **_samples.vec_**: Vector file from positive images.
+- **_Cascade_** _ **_??x??_**: Directory (an arbitrary name) include trained xml files from vector file and negative images.
