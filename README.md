@@ -18,4 +18,14 @@ Mentioned files can be download from [here](https://github.com/hzawary/CascadeTr
 
 ### Short keys
 **_Ctrl+Right_** and **_Ctrl+Left_** for goto next image and previous image respectively.
+
 **_Ctrl+Up_** and **_Ctrl+Down_** for accept image as positive and negative respectively and goto the next image.
+
+### The result program structure
+**_Negatives_**: Directory include a text file and negative images.
+
+**_Positives_**: Directory include a text file and positive images.
+
+**_samples.vec_**: Vector file from positive images.
+
+**_Cascade_??x??_**: Directory(an arbitrary name) include a trained xml files from vector file and negative images.
