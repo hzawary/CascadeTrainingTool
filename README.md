@@ -28,4 +28,4 @@ Mentioned files can be download from [here](https://github.com/hzawary/CascadeTr
 
 **_samples.vec_**: Vector file from positive images.
 
-**_Cascade_??x??_**: Directory(an arbitrary name) include a trained xml files from vector file and negative images.
+**_Cascade_** _ **_??x??_**: Directory(an arbitrary name) include a trained xml files from vector file and negative images.
