@@ -1,5 +1,6 @@
 # CascadeTrainingTool
 An useful windows application as user interface to cascade classifier training using OpenCV applications.
+![CascadeTrainingBuilder](http://s3.picofile.com/file/8223385068/CascadeTrainingBuilderTool.jpg)
 
 Base program developed using Visual Studio 2015, C# .Net 4.6, compiled in x86 windows 10.
 
