@@ -29,21 +29,22 @@
         </Grid.Resources>
         <Image Grid.Column="1" Grid.Row="1" Source="hz-072.ico" Margin="10"/>
         <TextBlock Grid.Column="2" Grid.Row="1">
-            <Run Text="C#, .NET 4.6, WPF, tools for training builder."/>
+            <Run Text="WPF C# .NET 4.6, , A tool for cascade training builder."/>
             <LineBreak/>
             <Hyperlink RequestNavigate="Hyperlink_RequestNavigate"
-                       NavigateUri="http://xp4u.blogsky.com/1394/03/09/post-32/%D8%B1%D8%A7%D9%87-%D8%AD%D9%84-%D9%88%DB%8C%D8%AA%D8%B1%DB%8C%D9%86-%D8%AA%D8%B9%D8%A7%D9%85%D9%84%DB%8C-%D8%A8%D8%A7-%D8%A7%D8%B3%D8%AA%D9%81%D8%A7%D8%AF%D9%87-%D8%A7%D8%B2-%D9%88%D8%A8%DA%A9%D9%85-%DB%8C%D8%A7-%D8%AF%D9%88%D8%B1%D8%A8%DB%8C%D9%86-%DA%AF%D9%88%D8%B4%DB%8C-%D8%A7%D9%86%D8%AF%D8%B1%D9%88%DB%8C%D8%AF%DB%8C">
-                Page address
+                       NavigateUri="https://github.com/hzawary/CascadeTrainingTool">
+                Page address on GitHub.
             </Hyperlink>
         </TextBlock>
         <Image Grid.Column="1" Grid.Row="2" Source="HZ.png"/>
-        <TextBlock Grid.Column="2" Grid.Row="2">
-            <Run Text="http://www.xp4u.blogsky.com"/>
+        <TextBox Grid.Column="2" Grid.Row="2" AcceptsReturn="True" Text="http://www.xp4u.blogsky.com
+                 hashemzawary@gmail.com" TextWrapping="Wrap" IsReadOnly="True" VerticalAlignment="Center">
+            <!--<Run Text="http://www.xp4u.blogsky.com"/>
             <LineBreak/>
-            <Run Text="hashemzawary@gmail.com"/>
-        </TextBlock>
+            <Run Text="hashemzawary@gmail.com"/>-->
+        </TextBox>
         <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="4">
-            <Run Text="Open source policy, H.Zavvari."/>
+            <Run Text="Open source policy."/>
         </TextBlock>
     </Grid>
 </Window>

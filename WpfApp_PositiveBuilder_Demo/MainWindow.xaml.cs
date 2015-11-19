@@ -14,7 +14,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using WpfApp_PositiveBuilder_Demo.Help;
 using WpfApp_PositiveBuilder_Demo.Properties;
 using Brush = System.Windows.Media.Brush;
 using Brushes = System.Windows.Media.Brushes;
@@ -39,7 +38,7 @@ namespace WpfApp_PositiveBuilder_Demo
 
         Bitmap _originalBitmap;
 
-        const int ResizeWidth = 720;
+        const int DefaultResizeWidth = 720;
 
         readonly Grayscale _grayscale = Grayscale.CommonAlgorithms.BT709;
         readonly ResizeBilinear _resizer = new ResizeBilinear(0, 0);
@@ -105,7 +104,11 @@ namespace WpfApp_PositiveBuilder_Demo
         }
         private void HelpCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            new HelpBox(Path.Combine(_currentlyExecutingPath, "help/tutorial.gif")) { Owner = this }.ShowDialog();
+            var tutorialPath = Path.Combine(_currentlyExecutingPath, "help/tutorial.mp4");
+
+            if (File.Exists(tutorialPath))
+                Process.Start(tutorialPath);
+
         }
         private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -280,7 +283,9 @@ namespace WpfApp_PositiveBuilder_Demo
                     RegionDeterminerUserControl.BmpSource = Util.BitmapToBitmapImage(
                         ref _originalBitmap, BitmapCacheOption.OnLoad, BitmapCreateOptions.DelayCreation);
 
-                SizeStatusTextBlock.Text = string.Format("{0}", _originalBitmap.Height);
+                if (IsResized.IsChecked == null || !IsResized.IsChecked.Value)
+                    NewWidthTextBox.Text = $"{_originalBitmap.Width}";
+                SizeStatusTextBlock.Text = $"{_originalBitmap.Height}";
 
                 ImageInfoTextBlock.Text = string.Format("[{0}/{1}] {2}",
                     _currentImageIndex + 1, _imageInfoList.Count, _imageInfoList[_currentImageIndex].ImagePath);
@@ -302,9 +307,9 @@ namespace WpfApp_PositiveBuilder_Demo
             }
             catch
             {
-                _resizer.NewWidth = ResizeWidth;
+                _resizer.NewWidth = DefaultResizeWidth;
             }
-            _resizer.NewHeight = (int)(Convert.ToSingle(bitmap.Height) / bitmap.Width * ResizeWidth);
+            _resizer.NewHeight = (int)(Convert.ToSingle(bitmap.Height) / bitmap.Width * _resizer.NewWidth);
             bitmap = _resizer.Apply(bitmap);
         }
 

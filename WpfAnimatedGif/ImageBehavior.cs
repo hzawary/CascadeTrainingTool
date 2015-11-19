@@ -663,7 +663,7 @@ namespace WpfAnimatedGif
             var bitmap = new RenderTargetBitmap(
                 fullSize.Width, fullSize.Height,
                 96, 96,
-                PixelFormats.Pbgra32);
+                PixelFormats.Gray8);
             bitmap.Render(visual);
 
             if (bitmap.CanFreeze && !bitmap.IsFrozen)

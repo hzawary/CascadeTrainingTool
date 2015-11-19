@@ -89,51 +89,57 @@
                         </Style>
                     </StackPanel.Resources>
 
-                    <CheckBox x:Name="IsResized" Content="Is Resized Image"/>
-                    <CheckBox x:Name="IsLuminance" Content="Is Image in Luminance"/>
-                    <CheckBox x:Name="IsRemovedNoises" Content="Is Removed Image Noises"/>
-                    <CheckBox x:Name="IsAutoExtractionBg" Content="Is Auto Extraction Negatives"
+                    <StackPanel Background="#FFFCFFC8">
+                        <CheckBox x:Name="IsResized" Content="Is Resized Image"/>
+                        <CheckBox x:Name="IsLuminance" Content="Is Image in Luminance"/>
+                        <CheckBox x:Name="IsRemovedNoises" Content="Is Removed Image Noises"/>
+                        <CheckBox x:Name="IsAutoExtractionBg" Content="Is Auto Extraction Negatives"
                               Click="IsAutoExtractionBg_OnClick"/>
-                    <CheckBox x:Name="IsTopDirectorySearch" Content="Is Top Directory Only to search Images"/>
+                        <CheckBox x:Name="IsTopDirectorySearch" Content="Is Top Directory Only to search Images"/>
 
-                    <Button Content="Save as Positive and go to next image" Click="SaveSample_OnClick"/>
-                    <Button Content="Save as Negative and go to next image" Click="SaveBg_OnClick"/>
+                        <Button Content="Save as Positive and go to next image" Click="SaveSample_OnClick"/>
+                        <Button Content="Save as Negative and go to next image" Click="SaveBg_OnClick"/>
 
-                    <UniformGrid Rows="1">
-                        <Button Content="Save all as +" Click="SaveAllSamples_OnClick"/>
-                        <Button Content="Save all as -" Click="SaveAllBg_OnClick"/>
-                    </UniformGrid>
-
-                    <Separator Height="30"/>
-
-                    <StackPanel Style="{StaticResource HorizeStackStyle}">
-                        <TextBlock Text="Number of samples(%): "/>
-                        <TextBox x:Name="PercentSamples" Text="100" MaxLength="3"/>
+                        <UniformGrid Rows="1">
+                            <Button Content="Save all as +" Click="SaveAllSamples_OnClick"/>
+                            <Button Content="Save all as -" Click="SaveAllBg_OnClick"/>
+                        </UniformGrid>
                     </StackPanel>
-                    <StackPanel Style="{StaticResource HorizeStackStyle}">
-                        <TextBlock Text="Sample width: "/>
-                        <TextBox x:Name="SampleWidth" Text="60" MaxLength="3"/>
-                    </StackPanel>
-                    <StackPanel Style="{StaticResource HorizeStackStyle}">
-                        <TextBlock Text="Sample height: "/>
-                        <TextBox x:Name="SampleHeight" Text="20" MaxLength="3"/>
-                    </StackPanel>
-                    <UniformGrid Rows="1">
-                        <Button Content="Create Vector File" Click="CreateVec_OnClick"/>
-                        <Button Content="Show Inside Vector File" Click="ShowVec_OnClick"/>
-                    </UniformGrid>
 
-                    <Separator Height="30"/>
+                    <Separator Height="5"/>
 
-                    <StackPanel Style="{StaticResource HorizeStackStyle}">
-                        <TextBlock Text="Cascade Folder Name: "/>
-                        <TextBox x:Name="CascadeDirName" Text="Cascade_60x20"/>
+                    <StackPanel Background="#FFDEFFAF">
+                        <StackPanel Style="{StaticResource HorizeStackStyle}">
+                            <TextBlock Text="Number of samples(%): "/>
+                            <TextBox x:Name="PercentSamples" Text="100" MaxLength="3"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource HorizeStackStyle}">
+                            <TextBlock Text="Sample width: "/>
+                            <TextBox x:Name="SampleWidth" Text="60" MaxLength="3"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource HorizeStackStyle}">
+                            <TextBlock Text="Sample height: "/>
+                            <TextBox x:Name="SampleHeight" Text="20" MaxLength="3"/>
+                        </StackPanel>
+                        <UniformGrid Rows="1">
+                            <Button Content="Create Vector File" Click="CreateVec_OnClick"/>
+                            <Button Content="Show Inside Vector File" Click="ShowVec_OnClick"/>
+                        </UniformGrid>
                     </StackPanel>
-                    <StackPanel Style="{StaticResource HorizeStackStyle}">
-                        <TextBlock Text="Number of Stages: "/>
-                        <TextBox x:Name="NumofStagesTextBox" Text="20"/>
+
+                    <Separator Height="5"/>
+
+                    <StackPanel Background="#FFAFFFE9">
+                        <StackPanel Style="{StaticResource HorizeStackStyle}">
+                            <TextBlock Text="Cascade Folder Name: "/>
+                            <TextBox x:Name="CascadeDirName" Text="Cascade_60x20"/>
+                        </StackPanel>
+                        <StackPanel Style="{StaticResource HorizeStackStyle}">
+                            <TextBlock Text="Number of Stages: "/>
+                            <TextBox x:Name="NumofStagesTextBox" Text="20"/>
+                        </StackPanel>
+                        <Button Content="Generate Train XML" Click="GenerateTrain_OnClick"/>
                     </StackPanel>
-                    <Button Content="Generate Train XML" Click="GenerateTrain_OnClick"/>
 
                 </StackPanel>
             </ScrollViewer>
@@ -155,7 +161,7 @@
             <Image x:Name="ThumbnailImage"/>
             <TextBlock>
                 <Run Text="(" FontSize="18"/>
-                <TextBox x:Name="NewWidthTextBox" Text="720" MaxLength="4" Background="Transparent" Foreground="White"/>
+                <TextBox x:Name="NewWidthTextBox" Text="720" MaxLength="4"/>
                 <Run Text="x" FontSize="18"/>
                 <TextBlock x:Name="SizeStatusTextBlock" FontSize="18"/>
                 <Run Text=")" FontSize="18"/>

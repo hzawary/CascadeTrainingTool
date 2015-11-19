@@ -60,9 +60,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="FolderBrowserDialog.cs" />
-    <Compile Include="Help\HelpBox.xaml.cs">
-      <DependentUpon>HelpBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="RegionDeterminer.xaml.cs">
       <DependentUpon>RegionDeterminer.xaml</DependentUpon>
     </Compile>
@@ -75,10 +72,6 @@
     <Compile Include="Standard\Verify.cs" />
     <Compile Include="Util.cs" />
     <Page Include="AboutBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Help\HelpBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,10 +138,6 @@
       <Project>{b32efc06-6d44-4327-8715-336dd8234d30}</Project>
       <Name>NHotkey</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WpfAnimatedGif\WpfAnimatedGif.csproj">
-      <Project>{d129789c-3096-4d0b-8dd7-fe24a4df4b21}</Project>
-      <Name>WpfAnimatedGif</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="HZ.png" />
@@ -161,7 +150,7 @@
     <Resource Include="InteractiveVitrine.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Help\Tutorial.gif">
+    <None Include="Help\Tutorial.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
